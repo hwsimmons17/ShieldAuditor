@@ -79,8 +79,8 @@ export default function MainView() {
         </div>
 
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
-            <div className="flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
+          <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl">
+            <div className="flex h-16 items-center gap-x-4 border-gray-200 bg-white shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
               <button
                 type="button"
                 className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -117,8 +117,8 @@ export default function MainView() {
             </div>
           </div>
 
-          <main className="py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <main className="">
+            <div className="mx-auto max-w-7xl pl-1">
               <HomeView />
             </div>
           </main>
