@@ -65,7 +65,7 @@ export default function HomeView() {
         <div className="">
           <button
             type="button"
-            className="rounded-md bg-indigo-600 px-28 py-5 text-base font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full flex justify-center items-center"
+            className="rounded-md bg-indigo-600 px-28 py-3 text-base font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full flex justify-center items-center"
           >
             Connect to Github
             <AiFillGithub className="h-10 w-10 pl-2" />

@@ -28,7 +28,7 @@ export default function Sidebar() {
               <Menu />
               <ul role="list" className="-mx-2 space-y-1 py-10">
                 {navigation.map((item) => (
-                  <PageNav item={item} />
+                  <PageNav item={item} key={item.name} />
                 ))}
               </ul>
             </li>
