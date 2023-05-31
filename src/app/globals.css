@@ -25,3 +25,159 @@
     )
     rgb(var(--background-start-rgb));
 } */
+
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-ThinItalic.ttf");
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-ThinOblique.ttf");
+  font-weight: 100;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-ExtraLightItalic.ttf");
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-ExtraLightOblique.ttf");
+  font-weight: 200;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-LightItalic.ttf");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-LightOblique.ttf");
+  font-weight: 300;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Oblique.ttf");
+  font-weight: 400;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-MediumItalic.ttf");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-MediumOblique.ttf");
+  font-weight: 500;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-SemiBoldItalic.ttf");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-SemiBoldOblique.ttf");
+  font-weight: 600;
+  font-style: oblique;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "VictorMono";
+  src: url("/fonts/VictorMono-BoldOblique.ttf");
+  font-weight: 700;
+  font-style: oblique;
+}
+
+.token.constant {
+  color: black !important;
+}
+
+.line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+  font-family: "VictorMono";
+  line-height: 2em;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: black !important;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+pre {
+  line-height: 2em !important;
+}
+
+.language-jsx {
+  padding-top: 7px;
+  margin-left: 0px !important;
+}
