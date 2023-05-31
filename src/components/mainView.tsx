@@ -1,16 +1,19 @@
 "use client";
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Dialog, Transition } from "@headlessui/react";
 import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+  Bars3Icon,
+  CodeBracketIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Sidebar from "./sidebar";
 import HomeView from "./homeView";
+import ResultsView from "./resultsView";
 
 export default function MainView() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   return (
     <>
@@ -119,7 +122,19 @@ export default function MainView() {
 
           <main className="">
             <div className="mx-auto max-w-7xl pl-1">
-              <HomeView />
+              <div className="md:flex md:items-center md:justify-between">
+                <div className="min-w-0 flex-1 bg-lightGray p-10">
+                  <h2 className="text-2xl font-medium leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight flex flex-row">
+                    <CodeBracketIcon className="h-8 w-8" aria-hidden="true" />
+                    <div className="mx-6 text-2xl">Home</div>
+                  </h2>
+                </div>
+              </div>
+              {showResults ? (
+                <ResultsView />
+              ) : (
+                <HomeView setShowResults={setShowResults} />
+              )}
             </div>
           </main>
         </div>

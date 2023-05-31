@@ -1,9 +1,13 @@
 import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 
-export default function HomeView() {
+export default function HomeView({
+  setShowResults,
+}: {
+  setShowResults: Dispatch<SetStateAction<boolean>>;
+}) {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const openFileExplorer = () => {
@@ -16,14 +20,6 @@ export default function HomeView() {
 
   return (
     <>
-      <div className="md:flex md:items-center md:justify-between">
-        <div className="min-w-0 flex-1 bg-lightGray p-10">
-          <h2 className="text-2xl font-medium leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight flex flex-row">
-            <CodeBracketIcon className="h-8 w-8" aria-hidden="true" />
-            <div className="mx-6 text-2xl">Home</div>
-          </h2>
-        </div>
-      </div>
       <div className="max-w-md">
         <h3 className="font-medium text-xl py-5">Upload</h3>
         <p className="font-normal text-sm text-gray">
@@ -43,7 +39,6 @@ export default function HomeView() {
         <div className="pt-6 block text-sm font-medium leading-6 text-gray-900">
           Upload Contract
           <button
-            type="button"
             className="relative block w-full rounded-lg border-2 border-dashed border-gray p-12 text-center hover:border-gray-400 mt-2"
             onClick={openFileExplorer}
           >
@@ -80,6 +75,7 @@ export default function HomeView() {
             <button
               type="button"
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => setShowResults(true)}
             >
               Import
             </button>
