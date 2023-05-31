@@ -33,9 +33,7 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <div className="text-xs font-semibold leading-6 text-gray-400">
-                Your teams
-              </div>
+              <div className="text-xs font-semibold leading-6 text-gray-400"></div>
               <ul role="list" className="-mx-2 mt-2 space-y-1"></ul>
             </li>
             <li className="mt-auto">
