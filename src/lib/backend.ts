@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export const useBackend = (): Backend => {
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -33,13 +31,7 @@ export class Backend {
     }
 
     var text = await res.text();
-    var cleanedText = text
-      .slice(1)
-      .slice(1)
-      .slice(0, text.length - 3);
 
-    console.log(cleanedText);
-
-    return cleanedText;
+    return text;
   };
 }
