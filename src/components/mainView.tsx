@@ -10,10 +10,30 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Sidebar from "./sidebar";
 import HomeView from "./homeView";
 import ResultsView from "./resultsView";
+import { useBackend } from "@/lib/backend";
 
 export default function MainView() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [contractFile, setContractFile] = useState<File | null>(null);
+  const [reviewedCode, setReviewedCode] = useState<string | null>(null);
+  const backend = useBackend();
+
+  const handleSubmit = async () => {
+    console.log("handling submit");
+    if (!contractFile) {
+      console.log("no contract file");
+      // TODO: Tell user they need a valid contractFile
+      return;
+    }
+
+    const result = await backend.slitherReviewCode(contractFile);
+    if (!result) {
+      return;
+    }
+    setReviewedCode(result);
+    setShowResults(true);
+  };
 
   return (
     <>
@@ -131,9 +151,12 @@ export default function MainView() {
                 </div>
               </div>
               {showResults ? (
-                <ResultsView />
+                <ResultsView reviewedCode={reviewedCode} />
               ) : (
-                <HomeView setShowResults={setShowResults} />
+                <HomeView
+                  setContractFile={setContractFile}
+                  handleSubmit={handleSubmit}
+                />
               )}
             </div>
           </main>

@@ -4,9 +4,11 @@ import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 
 export default function HomeView({
-  setShowResults,
+  setContractFile,
+  handleSubmit,
 }: {
-  setShowResults: Dispatch<SetStateAction<boolean>>;
+  setContractFile: Dispatch<SetStateAction<File | null>>;
+  handleSubmit: () => Promise<void>;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -48,7 +50,13 @@ export default function HomeView({
               ref={fileRef}
               accept=".sol"
               name="SolidityFile"
-              onChange={(event) => {}}
+              onChange={(e) => {
+                console.log("uploading file");
+                if (e.target.files && e.target.files[0]) {
+                  console.log("file uploaded");
+                  setContractFile(e.target.files[0]);
+                }
+              }}
             />
             <DocumentTextIcon className="mx-auto h-12 w-12 text-gray" />
             <span className="mt-2 block text-sm font-regular text-gray-900">
@@ -75,7 +83,10 @@ export default function HomeView({
             <button
               type="button"
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              onClick={() => setShowResults(true)}
+              onClick={async () => {
+                console.log("submitting...");
+                await handleSubmit();
+              }}
             >
               Import
             </button>
