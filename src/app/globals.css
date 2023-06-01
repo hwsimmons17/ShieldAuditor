@@ -192,6 +192,21 @@ pre {
   white-space: normal;
 }
 
-.token.content {
-  color: #d34c00;
+.token.italic {
+  color: red !important;
+  font-style: normal !important;
 }
+
+.token.content:has(.token.italic) .token.italic {
+  color: orange !important;
+  font-style: normal !important;
+}
+
+.token.bold {
+  color: green !important;
+  font-weight: 500 !important;
+}
+
+/* .token.content {
+  color: #d34c00;
+} */

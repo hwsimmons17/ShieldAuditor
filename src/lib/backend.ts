@@ -31,8 +31,38 @@ export class Backend {
     }
 
     var text = await res.text();
+    text = text.replace(removeUntil(text, "##"), "");
+    text = removeLinesWithDashes(text);
+    text = text.replaceAll("[", "");
+    text = text.replaceAll("]", "");
+    text = text.replaceAll(contract.name, "");
+    text = removeEmptyLines(text);
+    text = removeLinkLines(text);
+    text = text.replaceAll("Impact: High", "Impact: _High_");
+    text = text.replaceAll("Confidence: High", "Confidence: _High_");
+    text = text.replaceAll("Impact: Medium", "Impact: **_Medium_**");
+    text = text.replaceAll("Confidence: Medium", "Confidence: **_Medium_**");
+    text = text.replaceAll("Impact: Low", "Impact: **Low**");
+    text = text.replaceAll("Confidence: Low", "Impact: **Low**");
+    text = text.replaceAll(
+      "Impact: Informational",
+      "Impact: **Informational**"
+    );
+    text = text.replaceAll(
+      "Confidence: Informational",
+      "Impact: **Informational**"
+    );
+    text = text.replaceAll("Impact: Optimization", "Impact: **Optimization**");
+    text = text.replaceAll(
+      "Confidence: Optimization",
+      "Impact: **Optimization**"
+    );
 
-    return text.replace(removeUntil(text, "##"), "");
+    console.log(text);
+
+    console.log("L3-L237".replace(/L[0-9]+-L[0-9]+/, ""));
+
+    return text;
   };
 }
 
@@ -43,4 +73,40 @@ function removeUntil(str: string, delimiter: string) {
   } else {
     return "";
   }
+}
+
+function removeLinesWithDashes(text: string) {
+  var lines = text.split("\n");
+  var filteredLines = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (!lines[i].includes("- [ ]")) {
+      filteredLines.push(lines[i]);
+    }
+  }
+  return filteredLines.join("\n");
+}
+
+function removeEmptyLines(text: string) {
+  var lines = text.split("\n");
+  var filteredLines = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i].length != 0) {
+      filteredLines.push(lines[i]);
+    }
+  }
+  return filteredLines.join("\n");
+}
+
+function removeLinkLines(text: string) {
+  var lines = text.split("\n");
+  var filteredLines = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (
+      lines[i].replace(/L[0-9]+-L[0-9]+/, "").trim().length != 1 &&
+      lines[i].replace(/L[0-9]+/, "").trim().length != 1
+    ) {
+      filteredLines.push(lines[i]);
+    }
+  }
+  return filteredLines.join("\n");
 }
