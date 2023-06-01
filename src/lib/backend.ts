@@ -57,6 +57,7 @@ export class Backend {
       "Confidence: Optimization",
       "Impact: **Optimization**"
     );
+    text = addCodeDecorators(text);
 
     console.log(text);
 
@@ -106,6 +107,19 @@ function removeLinkLines(text: string) {
       lines[i].replace(/L[0-9]+/, "").trim().length != 1
     ) {
       filteredLines.push(lines[i]);
+    }
+  }
+  return filteredLines.join("\n");
+}
+
+function addCodeDecorators(text: string) {
+  var lines = text.split("\n");
+  var filteredLines = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i].trim()[0] != "-") {
+      filteredLines.push(lines[i]);
+    } else {
+      filteredLines.push("   " + "`" + lines[i].substring(3) + "`");
     }
   }
   return filteredLines.join("\n");
