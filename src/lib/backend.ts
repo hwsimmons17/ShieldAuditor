@@ -32,7 +32,14 @@ export class Backend {
       throw Error("Error getting Slither review");
     }
 
-    return res.text();
-    return "";
+    var text = await res.text();
+    var cleanedText = text
+      .slice(1)
+      .slice(1)
+      .slice(0, text.length - 3);
+
+    console.log(cleanedText);
+
+    return cleanedText;
   };
 }
