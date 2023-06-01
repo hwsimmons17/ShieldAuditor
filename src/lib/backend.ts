@@ -32,6 +32,15 @@ export class Backend {
 
     var text = await res.text();
 
-    return text;
+    return text.replace(removeUntil(text, "##"), "");
   };
+}
+
+function removeUntil(str: string, delimiter: string) {
+  var index = str.indexOf(delimiter);
+  if (index !== -1) {
+    return str.substring(0, index);
+  } else {
+    return "";
+  }
 }

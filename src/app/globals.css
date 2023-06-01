@@ -153,10 +153,6 @@
   font-style: oblique;
 }
 
-.token.constant {
-  color: black !important;
-}
-
 .line-numbers-rows > span {
   pointer-events: none;
   display: block;
@@ -177,7 +173,25 @@ pre {
   line-height: 2em !important;
 }
 
-.language-jsx {
+.language-markdown {
   padding-top: 7px;
   margin-left: 0px !important;
+}
+
+.token.url {
+  color: #7ddd98 !important;
+}
+
+.token.punctuation {
+  display: none;
+}
+
+.token.title.important {
+  color: #0098ff;
+  text-transform: capitalize;
+  white-space: normal;
+}
+
+.token.content {
+  color: #d34c00;
 }
