@@ -1,14 +1,20 @@
-import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { AiFillGithub } from "react-icons/ai";
+import NoFileUploaded from "./noFileUploaded";
+import FileUploaded from "./fileUploaded";
 
 export default function HomeView({
+  contractFile,
   setContractFile,
-  handleSubmit,
+  reviewedCode,
+  clearData,
+  setShowResults,
 }: {
+  contractFile: File | null;
   setContractFile: Dispatch<SetStateAction<File | null>>;
-  handleSubmit: () => Promise<void>;
+  reviewedCode: string | null;
+  clearData: () => void;
+  setShowResults: Dispatch<SetStateAction<boolean>>;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -57,6 +63,11 @@ export default function HomeView({
                   setContractFile(e.target.files[0]);
                 }
               }}
+              onClick={(e) => {
+                clearData();
+                //@ts-ignore
+                e.target.value = null;
+              }}
             />
             <DocumentTextIcon className="mx-auto h-12 w-12 text-gray" />
             <span className="mt-2 block text-sm font-regular text-gray-900">
@@ -64,34 +75,16 @@ export default function HomeView({
             </span>
           </button>
         </div>
-        <div className="text-center font-medium text-xs py-2 text-gray">or</div>
-        <div className="">
-          <button
-            type="button"
-            className="rounded-md bg-indigo-600 px-28 py-3 text-base font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full flex justify-center items-center"
-          >
-            Connect to Github
-            <AiFillGithub className="h-10 w-10 pl-2" />
-          </button>
-          <div className="flex pt-6 place-content-between">
-            <button
-              type="button"
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              onClick={async () => {
-                console.log("submitting...");
-                await handleSubmit();
-              }}
-            >
-              Import
-            </button>
-          </div>
-        </div>
+        {contractFile ? (
+          <FileUploaded
+            contractFile={contractFile}
+            clearData={clearData}
+            reviewedCode={reviewedCode}
+            setShowResults={setShowResults}
+          />
+        ) : (
+          <NoFileUploaded />
+        )}
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -32,8 +32,16 @@ export default function MainView() {
       return;
     }
     setReviewedCode(result);
-    setShowResults(true);
   };
+
+  const clearData = () => {
+    setReviewedCode(null);
+    setContractFile(null);
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [contractFile]);
 
   return (
     <>
@@ -154,8 +162,11 @@ export default function MainView() {
                 <ResultsView reviewedCode={reviewedCode} />
               ) : (
                 <HomeView
+                  contractFile={contractFile}
                   setContractFile={setContractFile}
-                  handleSubmit={handleSubmit}
+                  reviewedCode={reviewedCode}
+                  clearData={clearData}
+                  setShowResults={setShowResults}
                 />
               )}
             </div>
